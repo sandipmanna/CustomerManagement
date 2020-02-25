@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <style>
+        table tr td label {
+            font-family: Verdana;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+        @using (Html.BeginForm())
+        {
+            <div>
+                <h1 style="text-align:center">Customer Management</h1>
+                <table>
+                    <tr style="line-height: 25px">
+                        <td><label>Used name: </label>@Session["UserIdentityName"]</td>
+                    </tr>
+                    <tr style="line-height: 25px">
+                        <td><label>Is User Authenticated: </label>@Session["IsUserAuthenticated"]</td>
+                    </tr>
+                    <tr style="line-height: 25px">
+                        <td><label>Authentication Type: </label>@Session["UserAuthenticatedType"]</td>
+                    </tr>
+                    <tr style="line-height: 25px">
+                        <td><label>Application Code executed using: </label>@Session["UsedIdentity"]</td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <a href="~/Customer/Create"><b>Add New Customer</b></a>
+                <br />
+                <a href="~/Customer/Search"><b>Search Customer</b></a>
+        </div>
+        }
+</body>
+</html>

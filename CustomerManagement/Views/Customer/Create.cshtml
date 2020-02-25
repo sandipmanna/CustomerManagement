@@ -1,0 +1,125 @@
+﻿@model CustomerManagement.ViewModel.CustomerViewModel
+@using CustomerManagement.Models;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <link href="~/Styles/BasicStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/Customer.js"></script>
+    <script>
+        
+        var app = angular.module("MyApp", []);
+        app.controller("CustomerViewModel", CustomerViewModelData);
+    </script>
+</head>
+<body ng-app="MyApp">
+    <div style="margin: 20px 0px 0px 20px">
+        <a href="~/Home/Home">Home</a>
+        <div ng-controller="CustomerViewModel">
+            <form id="frmCustomer">
+                @Html.AntiForgeryToken()
+                <table>
+                    <tr style="line-height: 30px">
+                        <td>@Html.LabelFor(x => x.Customer.CustomerName, new { @class = "Myclass" })</td>
+                        <td>
+                            <input type="text" name="Customer.CustomerName" ng-model="CustomerViewModel.Customer.CustomerName" value="" />
+                        </td>
+                        <td>@Html.ValidationMessageFor(x => x.Customer.CustomerName, "", new { @style = "color: red" })</td>
+                    </tr>
+                    <tr style="line-height: 30px">
+                        <td>
+                            @Html.LabelFor(x => x.Customer.CustomerCode, new { @style = "font-family: Verdana; font-style: italic;" })
+                        </td>
+                        <td>
+                            <input type="text" name="Customer.CustomerCode" ng-model="CustomerViewModel.Customer.CustomerCode" value="" />
+                        </td>
+                        <td>@Html.ValidationMessageFor(x => x.Customer.CustomerCode, "", new { @style = "color: red" })</td>
+                    </tr>
+                    <tr style="line-height: 30px">
+                        <td>
+                            @Html.LabelFor(x => x.Customer.CustomerAmount, new { @style = "font-family: Verdana; font-style: italic;" })
+                        </td>
+                        <td>
+                            <input type="text" name="Customer.CustomerAmount" ng-model="CustomerViewModel.Customer.CustomerAmount"
+                                   style="background-color:{{CustomerViewModel.Customer.CustomerAmountColor}}"
+                                   value="" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr style="line-height: 30px">
+                        <td colspan="2" style="text-align: right; padding-right: 5%">
+                            <input type="button" name="name" value="Add Customer" ng-click="AddCustomer()" />
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+            </form>
+            <div id="status"></div>
+            <table id="tblCustomerList" style="width: 50%">
+                <thead>
+                    <tr>
+                        <td style="width: 33%; font-weight: bold">Customer Code</td>
+                        <td style="width: 33%; font-weight: bold">Customer Name</td>
+                        <td style="width: 33%; font-weight: bold">Customer Amount</td>
+                    </tr>
+                </thead>
+                <tbody id="tbdy"></tbody>
+                <tr ng-repeat="cust in Customers">
+                    <td>{{cust.CustomerCode}}</td>
+                    <td>{{cust.CustomerName}}</td>
+                    <td style="background-color:{{cust.CustomerAmountColor}}">{{cust.CustomerAmount}}</td>
+                </tr>
+                @*@foreach (Customer _customer in Model.Customers)
+                {
+                    <tr>
+                        <td>@_customer.CustomerCode</td>
+                        <td>@_customer.CustomerName</td>
+                    </tr>
+                }*@
+            </table>
+        </div>
+    </div>
+    <script>
+       /* $(document).ready(function () {
+            //$('#status').fadeOut(5000);
+        });
+
+        $('#status').text('Loading Data. Please wait...');
+        $.get("GetCustomer", null, BindData);
+
+        function BindData(Customers) {
+            var tbody = $('#tbdy');
+            $.each(Customers, function (index, row) {
+                var tdRow = '<tr><td>' + row.CustomerCode + '</td>' +
+                    '<td>' + row.CustomerName + '</td>' +
+                    '</tr>';
+                tbody.append(tdRow);
+            })
+            $('#status').fadeOut("slow");
+        }
+
+        function SendData() {
+            $('#status').text('Saving Data. Please wait...');
+            var Data = $('#frmCustomer').serialize();
+            $.post("AddCustomer", Data, BindData);
+            $('#Customer_CustomerName').val("");
+            $('#Customer_CustomerCode').val("");
+            $('#status').text('Customer Added Successfully...');
+            $('#status').fadeOut(5000);
+        }*/
+    </script>
+</body>
+</html>

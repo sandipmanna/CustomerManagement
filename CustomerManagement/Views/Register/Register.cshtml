@@ -1,0 +1,64 @@
+﻿@model CustomerManagement.Models.Register
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("Register", "Register", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <table>
+                <tr style="line-height: 30px">
+                    <td>@Html.LabelFor(x => x.UserName, new { @class = "Myclass" })</td>
+                    <td>
+                        @Html.TextBoxFor(x => x.UserName)
+                    </td>
+                    <td>@Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color: red" })</td>
+                </tr>
+                <tr style="line-height: 30px">
+                    <td>
+                        @Html.LabelFor(x => x.Password, new { @style = "font-family: Verdana; font-style: italic;" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Password)
+                    </td>
+                    <td>@Html.ValidationMessageFor(x => x.Password, "", new { @style = "color: red" })</td>
+                </tr>
+                <tr style="line-height: 30px">
+                    <td>
+                        @Html.LabelFor(x => x.ConfirmPassword, new { @style = "font-family: Verdana; font-style: italic;" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.ConfirmPassword)
+                    </td>
+                    <td>@Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @style = "color: red" })</td>
+                </tr>
+                <tr style="line-height: 30px">
+                    <td>
+                        @Html.LabelFor(x => x.email, new { @style = "font-family: Verdana; font-style: italic;" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.email)
+                    </td>
+                    <td>@Html.ValidationMessageFor(x => x.email, "", new { @style = "color: red" })</td>
+                </tr>
+                <tr style="line-height: 30px">
+                    <td colspan="2" style="text-align: right; padding-right: 5%">
+                        <input type="submit" name="name" value="Register" />
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>

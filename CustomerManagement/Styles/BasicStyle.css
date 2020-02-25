@@ -1,0 +1,22 @@
+﻿.Myclass {
+    font-family: Verdana;
+    font-style: italic;
+}
+
+#tblCustomerList {
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+#tblCustomerList tr td {
+    border: solid 1px #000000;
+}
+
+#tblCustomerList thead {
+    background-color: #808080;
+}
+
+button[type=submit] {
+    cursor: pointer;
+    border-radius: 4px
+}

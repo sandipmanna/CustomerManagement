@@ -1,0 +1,61 @@
+﻿@using CustomerManagement.Models;
+@model User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Styles/BasicStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="margin: 20px 0px 0px 20px">
+        @using (Html.BeginForm("ValidateLogin", "Login", FormMethod.Post))
+            {
+            <table>
+                <tr style="line-height: 30px">
+                    <td>
+                        <span class="Myclass">
+                            User Name:
+                        </span>
+                    </td>
+                    <td>
+                        <input type="text" name="UserName" value="@Model.UserName" />
+                    </td>
+                    <td>@Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color: red" })</td>
+                </tr>
+                <tr style="line-height: 30px">
+                    <td>
+                        <span class="Myclass">
+                            Password:
+                        </span>
+                    </td>
+                    <td>
+                        <input type="password" name="Password" />
+                    </td>
+                    <td>@Html.ValidationMessageFor(x => x.Password, "", new { @style = "color: red" })</td>
+                </tr>
+                <tr style="line-height: 30px">
+                    <td style="text-align: right" colspan="2">
+                        @*<span style="float: left">Remember me</span>
+                            @Html.CheckBoxFor(x => x.RememberMe, new { @style = "float: left; margin-top:8px;" })*@
+                        <input type="submit" name="name" value="Login" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        @Html.ValidationMessage("LoginError", new { @style = "color: red" })
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>

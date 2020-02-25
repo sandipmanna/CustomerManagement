@@ -1,0 +1,44 @@
+﻿@using CustomerManagement.Models;
+@model CustomerManagement.ViewModel.CustomerViewModel
+<link href="~/Styles/BasicStyle.css" rel="stylesheet" />
+
+<table id="tblCustomerList" style="width: 50%">
+    <thead>
+        <tr>
+            <td style="width: 33%; font-weight: bold">Customer Code</td>
+            <td style="width: 33%; font-weight: bold">Customer Name</td>
+            <td style="width: 33%; font-weight: bold">Customer Amount</td>
+        </tr>
+    </thead>
+    <tbody id="tbdy"></tbody>
+    <tr ng-repeat="cust in Customers">
+        <td>{{cust.CustomerCode}}</td>
+        <td>{{cust.CustomerName}}</td>
+        <td style="background-color:{{cust.CustomerAmountColor}}">{{cust.CustomerAmount}}</td>
+    </tr>
+</table>
+
+@*<table id="tblCustomerList" style="width: 30%">
+    <thead>
+        <tr>
+            <td style="width: 50%; font-weight: bold">Customer Code</td>
+            <td style="width: 50%; font-weight: bold">Customer Name</td>
+        </tr>
+    </thead>
+    @if (Model.Customers.Count > 0)
+    {
+        foreach (Customer _customer in Model.Customers)
+        {
+            <tr>
+                <td>@_customer.CustomerCode</td>
+                <td>@_customer.CustomerName</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="2">No Record to display</td>
+        </tr>
+    }
+</table>*@
